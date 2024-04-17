@@ -1,0 +1,1 @@
+export { default } from 'ember-flexberry-infinite-scroll/components/flexberry-infinite-scroll';

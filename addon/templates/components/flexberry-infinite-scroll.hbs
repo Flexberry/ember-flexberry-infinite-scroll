@@ -1,0 +1,14 @@
+<div class="table-container" style="height: 400px;">
+  {{#ember-table as |t|}}
+    {{t.head columns=this.columns}}
+
+    {{t.body
+      rows=this.content
+      estimateRowHeight=this.estimateRowHeight
+      firstReached=this.firstReached
+      lastReached=this.lastReached
+      bufferSize=this.bufferSize
+      idForFirstItem=this.idForFirstItem
+    }}
+  {{/ember-table}}
+</div>
