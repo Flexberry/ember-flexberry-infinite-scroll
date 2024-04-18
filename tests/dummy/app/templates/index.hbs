@@ -1,7 +1,6 @@
 <div class="test">Scrolling test</div>
   {{flexberry-infinite-scroll
-    modelName=modelName
-    projectionName=projectionName
-    content=this.model.users
+    modelProjection=modelProjection
+    content=model.users
     lastReached=(action "lastReached")
   }}

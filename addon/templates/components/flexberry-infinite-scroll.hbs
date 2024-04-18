@@ -1,4 +1,4 @@
-<div class="table-container" style="height: 400px;">
+<div class="table-container" style="height: {{height}}px;">
   {{#ember-table as |t|}}
     {{t.head columns=this.columns}}
 
@@ -9,6 +9,7 @@
       lastReached=this.lastReached
       bufferSize=this.bufferSize
       idForFirstItem=this.idForFirstItem
+      enableTree=false
     }}
   {{/ember-table}}
 </div>
