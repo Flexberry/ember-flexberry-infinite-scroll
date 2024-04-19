@@ -1,6 +1,6 @@
 import Route from '@ember/routing/route';
 import { getOwner } from '@ember/application';
-import { A } from '@ember/array';
+import Builder from 'ember-flexberry-data/query/builder';
 
 export default Route.extend({
   modelName: 'ember-flexberry-dummy-suggestion-type',
@@ -8,15 +8,17 @@ export default Route.extend({
   projectionName: 'SuggestionTypeL',
 
   model() {
-    let res = A();
-    for (let i = 0; i < 40; i++) {
-      res.addObject(this.store.createRecord('ember-flexberry-dummy-application-user', { name: i }));
-    }
+    const modelName = this.get('modelName');
+    const projectionName = this.get('projectionName');
+    const store = this.store;
+    const builder = new Builder(store)
+      .from(modelName)
+      .selectByProjection(projectionName)
+      .top(20)
+      .orderBy('name asc')
+      .count();
 
-    return {
-      users: res,
-      lastUser: 39
-    };
+    return store.query(modelName, builder.build());
   },
 
   setupController(controller) {
@@ -25,9 +27,10 @@ export default Route.extend({
     // Define 'modelProjection' for controller instance.
     const modelName = this.get('modelName');
     const modelClass = getOwner(this).resolveRegistration(`model:${modelName}`);
-    const modelProjName = this.get('projectionName');
-    const proj = modelClass.projections.get(modelProjName);
+    const projectionName = this.get('projectionName');
+    const proj = modelClass.projections.get(projectionName);
     controller.set('modelProjection', proj);
     controller.set('modelName', modelName);
+    controller.set('projectionName', projectionName);
   }
 });

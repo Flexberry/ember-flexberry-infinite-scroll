@@ -50,7 +50,11 @@ export default Component.extend({
 
         case 'belongsTo': {
           if (!attr.options.hidden) {
-            const bindingPath = currentRelationshipPath + attrName;
+            let bindingPath = currentRelationshipPath + attrName;
+            if (attr.options.displayMemberPath) {
+              bindingPath += `.${attr.options.displayMemberPath}`
+            }
+
             const column = this._createColumn(attr, attrName, bindingPath);
 
             columnsBuf.pushObject(column);

@@ -1,6 +1,8 @@
 <div class="test">Scrolling test</div>
   {{flexberry-infinite-scroll
     modelProjection=modelProjection
-    content=model.users
+    content=infiniteModel
     lastReached=(action "lastReached")
+    estimateRowHeight=20
+    bufferSize=1
   }}

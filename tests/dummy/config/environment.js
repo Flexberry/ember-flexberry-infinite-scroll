@@ -19,7 +19,7 @@ module.exports = function(environment) {
 
     APP: {
       backendUrls: {
-        api: 'https://localhost/odata'
+        api: 'https://ember-stand.flexberry-foundation.ru/odata'
       }
     }
   };
